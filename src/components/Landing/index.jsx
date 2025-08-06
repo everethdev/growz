@@ -2,6 +2,7 @@
 import styles from './style.module.scss'
 import { motion } from 'framer-motion';
 import { useState, useEffect, useMemo } from 'react';
+import ServicesModal from '../ServicesModal';
 
 const slideUp = {
     initial: { y: "100%" },
@@ -19,6 +20,7 @@ const ANIMATION_TYPES = [
 export default function Home() {
   const [animationIndex, setAnimationIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -189,7 +191,7 @@ export default function Home() {
           <p className={styles.microcopy}>We offer</p>
           <h1 className={styles.headline}>High-End Consultancy</h1>
           <p className={styles.description}>to help you grow your business in today&apos;s digital era.</p>
-          <button className={styles.ctaButton}>Learn More</button>
+          <button className={styles.ctaButton} onClick={() => {setModalActive(true)}}>Learn More</button>
         </div>
         <div className={`${styles.illustrationContainer} ${isFading ? styles.fading : ''}`}>
            <div className={styles.circleContainer}>
@@ -230,6 +232,7 @@ export default function Home() {
             </div>
         </div>
       </main>
+      <ServicesModal active={modalActive} setActive={setModalActive} />
     </motion.div>
   )
 }
