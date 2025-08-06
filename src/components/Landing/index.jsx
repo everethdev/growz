@@ -180,7 +180,7 @@ export default function Home() {
         <div className={styles.textContainer}>
           <p className={styles.microcopy}>We offer</p>
           <h1 className={styles.headline}>High-End Consultancy</h1>
-          <p className={styles.description}>to help you grow your business in today's digital era.</p>
+          <p className={styles.description}>to help you grow your business in today&apos;s digital era.</p>
           <button className={styles.ctaButton}>Learn More</button>
         </div>
         <div className={`${styles.illustrationContainer} ${isFading ? styles.fading : ''}`}>
