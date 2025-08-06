@@ -13,9 +13,7 @@ const slideUp = {
 
 // Array now contains all 12 animation types
 const ANIMATION_TYPES = [
-    'pulsating', 'orbits', 'sequentialRings', 'concentricRotations', 
-    'circularWaves', 'expandingLines', 'grid', 'ripple', 
-    'fibonacci', 'halftone', 'silver', 'fibonacciSVG'
+    'halftone', 'grid', 'ripple', 'expandingLines', 'silver'
 ];
 
 export default function Home() {
@@ -28,8 +26,8 @@ export default function Home() {
       setTimeout(() => {
         setAnimationIndex(prevIndex => (prevIndex + 1) % ANIMATION_TYPES.length);
         setIsFading(false);
-      }, 500);
-    }, 5000);
+      }, 500); // Fade duration
+    }, 6000); // 2-second animation cycle
     return () => clearInterval(interval);
   }, []);
 
@@ -114,8 +112,18 @@ export default function Home() {
       }
 
       case 'ripple': {
+        elements.push({ key: 'center-ripple', class: styles.dot, style: { width: '8px', height: '8px', left: 'calc(50% - 4px)', top: 'calc(50% - 4px)', zIndex: 10 }});
         for (let i = 0; i < 4; i++) {
           elements.push({ key: `r-r-${i}`, class: styles.rippleRing, style: { animationDelay: `${i * (4/4)}s` }});
+        }
+        const numRings = 6, maxRadius = 80;
+        for (let ring = 0; ring < numRings; ring++) {
+          const radius = 15 + (ring * (maxRadius - 15)) / (numRings - 1), numDots = 6 + ring * 3;
+          for (let i = 0; i < numDots; i++) {
+            const angle = (i / numDots) * 2 * Math.PI, x = Math.cos(angle) * radius, y = Math.sin(angle) * radius;
+            const distanceFromCenter = Math.sqrt(x*x + y*y) / maxRadius, size = 5 - ring * 0.5;
+            elements.push({ key: `rd-${ring}-${i}`, class: styles.rippleWaveDot, style: { width: `${size}px`, height: `${size}px`, left: `calc(50% + ${x}px - ${size/2}px)`, top: `calc(50% + ${y}px - ${size/2}px)`, animation: 'rippleWave 1s infinite ease-in-out', animationDelay: `${distanceFromCenter * (4/1.2)}s`, background: `rgba(28, 28, 28, ${(90 - ring * 10) / 100})` }});
+          }
         }
         break;
       }
@@ -139,7 +147,7 @@ export default function Home() {
       }
       
       case 'fibonacciSVG': {
-        const N = 200, SIZE = 250, DOT_RADIUS = 2, MARGIN = 4, CENTER = SIZE / 2, MAX_RADIUS = CENTER - MARGIN - DOT_RADIUS, GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5)), DURATION = 3;
+        const N = 200, SIZE = 180, DOT_RADIUS = 2, MARGIN = 4, CENTER = SIZE / 2, MAX_RADIUS = CENTER - MARGIN - DOT_RADIUS, GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5)), DURATION = 3;
         let circles = [];
         for (let i = 0; i < N; i++) {
             const idx = i + 0.5, frac = idx / N, r = Math.sqrt(frac) * MAX_RADIUS, theta = idx * GOLDEN_ANGLE;
@@ -157,11 +165,11 @@ export default function Home() {
 
       case 'grid':
       default: {
-        const grid = 15, spacing = 20, dotSize = 5, offset = -(spacing * (grid - 1)) / 2;
+        const grid = 9, spacing = 16, dotSize = 4, offset = -(spacing * (grid - 1)) / 2;
         for (let y = 0; y < grid; y++) {
           for (let x = 0; x < grid; x++) {
             const px = offset + x * spacing, py = offset + y * spacing, center = (grid - 1) / 2, dist = Math.hypot(x-center, y-center), maxDist = Math.hypot(center, center);
-            elements.push({ key: `g-${x}-${y}`, class: `${styles.dot} ${styles.breathingDot}`, style: { width: `${dotSize}px`, height: `${dotSize}px`, left: `calc(50% + ${px}px - ${dotSize/2}px)`, top: `calc(50% + ${py}px - ${dotSize/2}px)`, animationDelay: `${(dist/maxDist) * 1.5}s`, background: `rgba(28, 28, 28, ${(90 - (dist/maxDist) * 60)/100})` }});
+            elements.push({ key: `g-${x}-${y}`, class: `${styles.dot} ${styles.breathingDot}`, style: { width: `${dotSize}px`, height: `${dotSize}px`, left: `calc(50% + ${px}px - ${dotSize/2}px)`, top: `calc(50% + ${py}px - ${dotSize/2}px)`, animationDelay: `${(dist/maxDist) * 1.5}s`, background: `rgba(28, 28, 28, ${(90 - (dist/maxDist) * 40)/100})` }});
           }
         }
         break;
@@ -185,6 +193,18 @@ export default function Home() {
         </div>
         <div className={`${styles.illustrationContainer} ${isFading ? styles.fading : ''}`}>
            <div className={styles.circleContainer}>
+              <div className={`${styles.corner} ${styles.topLeft}`}>
+                <svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><polygon points="448,224 288,224 288,64 224,64 224,224 64,224 64,288 224,288 224,448 288,448 288,288 448,288" fill="currentColor"></polygon></svg>
+              </div>
+              <div className={`${styles.corner} ${styles.topRight}`}>
+                <svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><polygon points="448,224 288,224 288,64 224,64 224,224 64,224 64,288 224,288 224,448 288,448 288,288 448,288" fill="currentColor"></polygon></svg>
+              </div>
+              <div className={`${styles.corner} ${styles.bottomLeft}`}>
+                <svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><polygon points="448,224 288,224 288,64 224,64 224,224 64,224 64,288 224,288 224,448 288,448 288,288 448,288" fill="currentColor"></polygon></svg>
+              </div>
+              <div className={`${styles.corner} ${styles.bottomRight}`}>
+                <svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><polygon points="448,224 288,224 288,64 224,64 224,224 64,224 64,288 224,288 224,448 288,448 288,288 448,288" fill="currentColor"></polygon></svg>
+              </div>
               {animationElements.map(el => {
                 if (el.type === 'svg') {
                   return (

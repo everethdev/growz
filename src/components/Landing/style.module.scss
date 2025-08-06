@@ -2,7 +2,7 @@
 .page {
   background-color: #f9f9f9;
   min-height: 100vh;
-  padding: 2rem 6rem; /* Increased horizontal padding */
+  padding: 2rem 12rem; /* Increased horizontal padding */
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -94,13 +94,13 @@
 /* Main animation container - UPDATED to fix size and scrollbar issues */
 .circleContainer { 
   position: relative; 
-  width: 800px;  /* Set a fixed base width */
-  height: 800px; /* Set a fixed base height */
+  width: 220px;
+  height: 220px;
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  transform: scale(2); /* Scale the entire animation up */
-  overflow: hidden; /* Prevent animations from causing layout shifts */
+  transform: scale(1.5);
+  overflow: hidden;
 }
 
 .dot { position: absolute; border-radius: 50%; background-color: #1c1c1c; }
@@ -130,6 +130,25 @@
 .rippleRing { position: absolute; border: 1px solid rgba(28, 28, 28, 0.3); border-radius: 50%; left: 50%; top: 50%; transform: translate(-50%, -50%); animation: ripple 4s infinite cubic-bezier(0, 0.5, 0.5, 1); }
 @keyframes ripple { 0% { width: 0; height: 0; opacity: 1; } 100% { width: 180px; height: 180px; opacity: 0; } }
 
+.rippleWaveDot {
+  position: absolute;
+  border-radius: 50%;
+  background: #1c1c1c;
+  transform-origin: center;
+}
+
+@keyframes rippleWave {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 1;
+  }
+}
+
 .fibonacciDot { composes: dot; animation: fibPulse 3s infinite ease-in-out; }
 @keyframes fibPulse { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
 
@@ -141,3 +160,45 @@
 
 .breathingDot { composes: dot; animation: breathe 4s infinite cubic-bezier(0.4, 0, 0.2, 1); }
 @keyframes breathe { 0%, 100% { transform: scale(0.8); } 50% { transform: scale(1.5); } }
+
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: #1c1c1c;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.illustrationContainer:hover .corner {
+  opacity: 1;
+}
+
+.topLeft {
+  top: -8px;
+  left: -8px;
+  transition-delay: 0s;
+}
+
+.topRight {
+  top: -8px;
+  right: -8px;
+  transform: rotate(90deg);
+  transition-delay: 0.1s;
+}
+
+.bottomLeft {
+  bottom: -8px;
+  left: -8px;
+  transform: rotate(-90deg);
+  transition-delay: 0.2s;
+}
+
+.bottomRight {
+  bottom: -8px;
+  right: -8px;
+  transform: rotate(180deg);
+  transition-delay: 0.3s;
+}

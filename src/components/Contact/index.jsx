@@ -43,7 +43,7 @@ export default function index() {
                             <p>contact@growz.com</p>
                         </Rounded>
                         <Rounded>
-                            <p>+31 6 27 84 74 30</p>
+                            <p>+40 (751) 943 797</p>
                         </Rounded>
                 </div>
                 <div className={styles.info}>
