@@ -19,12 +19,28 @@ export default function index() {
             <div className={styles.body}>
                 <div className={styles.title}>
                     <span>
-                        <div className={styles.imageContainer}>
-                            <Image 
-                            fill={true}
-                            alt={"image"}
-                            src={`/images/Ecobonus.jpg`}
-                            />
+                        <div className={styles.imageStack}>
+                            <div className={styles.imageContainer}>
+                                <Image 
+                                fill={true}
+                                alt={"image"}
+                                src={`/images/avatar3.jpg`}
+                                />
+                            </div>
+                            <div className={styles.imageContainer}>
+                                <Image 
+                                fill={true}
+                                alt={"image"}
+                                src={`/images/avatar1.jpg`} // Assuming you have this image
+                                />
+                            </div>
+                            <div className={styles.imageContainer}>
+                                <Image 
+                                fill={true}
+                                alt={"image"}
+                                src={`/images/avatar2.jpg`} // Assuming you have this image
+                                />
+                            </div>
                         </div>
                         <h2>Let's work</h2>
                     </span>

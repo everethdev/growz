@@ -31,6 +31,11 @@ export default function ServicesModal({ active, setActive }) {
         <AnimatePresence mode="wait">
             {active && (
                 <motion.div variants={opacity} initial="initial" animate="enter" exit="exit" className={styles.modalContainer}>
+                    <video autoPlay loop muted className={styles.backgroundVideo}>
+                        <source src="/consult.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                    <div className={styles.overlay}></div>
                     <div className={styles.modalSlider}>
                         <div className={styles.modal}>
                             <div className={styles.header}>

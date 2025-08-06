@@ -21,15 +21,24 @@
             span{
                 display: flex;
                 align-items: center;
-                .imageContainer{
-                    width: 100px;
-                    height: 100px;
-                    position: relative;
-                    border-radius: 50%;
-                    overflow: hidden;
+                .imageStack {
+                    display: flex;
+                    .imageContainer{
+                        width: 100px;
+                        height: 100px;
+                        position: relative;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        border: 3px solid #141516; /* Border to simulate separation */
+                        margin-left: -20px; /* Overlap effect */
 
-                    img{
-                        object-fit: cover;
+                        &:first-child {
+                            margin-left: 0; /* No overlap for the first image */
+                        }
+
+                        img{
+                            object-fit: cover;
+                        }
                     }
                 }
                 h2{
