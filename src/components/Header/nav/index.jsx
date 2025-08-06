@@ -7,22 +7,23 @@ import Link from './Link';
 import Curve from './Curve';
 import Footer from './Footer';
 
+// Update the 'About' href to not represent a page route
 const navItems = [
   {
     title: "Home",
-    href: "/",
+    href: "#home",
   },
   {
     title: "Work",
-    href: "/work",
+    href: "#work",
   },
   {
     title: "About",
-    href: "/about",
+    href: "#about", // Changed from "/about" to prevent navigation
   },
   {
     title: "Contact",
-    href: "/contact",
+    href: "#contact",
   },
 ]
 
@@ -30,6 +31,22 @@ export default function index() {
 
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
+
+  const handleLinkClick = (e, data) => {
+    e.preventDefault(); // Prevent default link behavior for all items
+
+    // Update the 'if' check to match the new href
+    if (data.href === '#about') {
+      // If it's the "About" link, dispatch the modal event
+      window.dispatchEvent(new CustomEvent('openAboutModal'));
+    } else {
+      // For all other links, dispatch the scroll event
+      window.dispatchEvent(new CustomEvent('scrollToSection', { detail: { target: data.href } }));
+    }
+    
+    // Update the visual indicator on click
+    setSelectedIndicator(data.href);
+  };
 
   return (
     <motion.div 
@@ -46,12 +63,16 @@ export default function index() {
                     </div>
                     {
                       navItems.map( (data, index) => {
-                        return <Link 
-                        key={index} 
-                        data={{...data, index}} 
-                        isActive={selectedIndicator == data.href} 
-                        setSelectedIndicator={setSelectedIndicator}>
-                        </Link>
+                        return (
+                          // Wrap every link in a div with our smart click handler
+                          <div key={index} onClick={(e) => handleLinkClick(e, data)}>
+                            <Link 
+                              data={{...data, index}} 
+                              isActive={selectedIndicator === data.href} 
+                              setSelectedIndicator={setSelectedIndicator}>
+                            </Link>
+                          </div>
+                        )
                       })
                     }
             </div>
