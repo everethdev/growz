@@ -23,14 +23,14 @@ export default function index() {
                             <Image 
                             fill={true}
                             alt={"image"}
-                            src={`/images/background.jpg`}
+                            src={`/images/Ecobonus.jpg`}
                             />
                         </div>
                         <h2>Let's work</h2>
                     </span>
                     <h2>together</h2>
                     <motion.div style={{x}} className={styles.buttonContainer}>
-                        <Rounded  backgroundColor={"#334BD3"} className={styles.button}>
+                        <Rounded  backgroundColor={"#f6ff00"} className={styles.button}>
                             <p>Get in touch</p>
                         </Rounded>
                     </motion.div>
@@ -40,7 +40,7 @@ export default function index() {
                 </div>
                 <div className={styles.nav}>
                         <Rounded>
-                            <p>info@dennissnellenberg.com</p>
+                            <p>contact@growz.com</p>
                         </Rounded>
                         <Rounded>
                             <p>+31 6 27 84 74 30</p>
@@ -50,25 +50,21 @@ export default function index() {
                     <div>
                         <span>
                             <h3>Version</h3>
-                            <p>2022 © Edition</p>
-                        </span>
-                        <span>
-                            <h3>Version</h3>
-                            <p>11:49 PM GMT+2</p>
+                            <p>2025 © Edition</p>
                         </span>
                     </div>
                     <div>
                         <span>
                             <h3>socials</h3>
                             <Magnetic>
-                                <p>Awwwards</p>
+                                <p>Twitter</p>
                             </Magnetic>
                         </span>
                         <Magnetic>
                             <p>Instagram</p>
                         </Magnetic>
                         <Magnetic>
-                            <p>Dribbble</p>
+                            <p>Facebook</p>
                         </Magnetic>
                         <Magnetic>
                             <p>Linkedin</p>
