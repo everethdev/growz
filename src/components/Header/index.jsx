@@ -7,7 +7,7 @@ import Nav from './nav';
 import Rounded from '../../common/RoundedButton';
 import Magnetic from '../../common/Magnetic';
 
-export default function index() {
+export default function Header() {
     const [isActive, setIsActive] = useState(false);
     const pathname = usePathname();
     const button = useRef(null);
