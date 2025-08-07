@@ -1,0 +1,46 @@
+
+[11:55:47.780] 
+[11:55:47.781] Failed to compile.
+[11:55:47.781] 
+[11:55:47.781] ./src/common/Magnetic/index.jsx
+[11:55:47.781] 5:22  Error: React Hook "useRef" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.781] 7:5  Error: React Hook "useEffect" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.781] 24:8  Warning: React Hook useEffect has a missing dependency: 'children'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+[11:55:47.782] 
+[11:55:47.782] ./src/common/RoundedButton/index.jsx
+[11:55:47.782] 9:18  Error: React Hook "useRef" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.782] 10:18  Error: React Hook "useRef" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.782] 12:3  Error: React Hook "useEffect" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.782] 
+[11:55:47.782] ./src/components/Contact/index.jsx
+[11:55:47.782] 9:23  Error: React Hook "useRef" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.783] 10:33  Error: React Hook "useScroll" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.783] 14:15  Error: React Hook "useTransform" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.783] 15:15  Error: React Hook "useTransform" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.784] 16:20  Error: React Hook "useTransform" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.784] 45:32  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[11:55:47.784] 
+[11:55:47.785] ./src/components/Description/index.jsx
+[11:55:47.785] 9:25  Error: React Hook "useRef" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.787] 10:22  Error: React Hook "useInView" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 
+[11:55:47.788] ./src/components/Header/index.jsx
+[11:55:47.788] 11:37  Error: React Hook "useState" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 12:22  Error: React Hook "usePathname" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 13:20  Error: React Hook "useRef" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 15:5  Error: React Hook "useEffect" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 17:8  Warning: React Hook useEffect has a missing dependency: 'isActive'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+[11:55:47.788] 
+[11:55:47.788] ./src/components/Header/nav/index.jsx
+[11:55:47.788] 32:20  Error: React Hook "usePathname" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 33:53  Error: React Hook "useState" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 
+[11:55:47.788] ./src/components/SlidingImages/index.jsx
+[11:55:47.788] 46:23  Error: React Hook "useRef" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 47:33  Error: React Hook "useScroll" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.788] 52:16  Error: React Hook "useTransform" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.789] 53:16  Error: React Hook "useTransform" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.789] 54:20  Error: React Hook "useTransform" is called in function "index" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+[11:55:47.789] 
+[11:55:47.789] info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+[11:55:47.828] Error: Command "npm run build" exited with 1

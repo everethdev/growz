@@ -42,7 +42,7 @@ export default function Contact() {
                                 />
                             </div>
                         </div>
-                        <h2>Let's work</h2>
+                        <h2>Let&apos;s work</h2>
                     </span>
                     <h2>together</h2>
                     <motion.div style={{x}} className={styles.buttonContainer}>
