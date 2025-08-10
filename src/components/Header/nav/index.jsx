@@ -7,19 +7,23 @@ import Link from './Link';
 import Curve from './Curve';
 import Footer from './Footer';
 
-// Update the 'About' href to not represent a page route
+
 const navItems = [
   {
     title: "Home",
-    href: "#home",
+    href: "/",
   },
   {
     title: "Work",
     href: "#work",
   },
+    {
+    title: "Services",
+    href: "#services",
+  },
   {
     title: "About",
-    href: "#about", // Changed from "/about" to prevent navigation
+    href: "#about", 
   },
   {
     title: "Contact",

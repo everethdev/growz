@@ -201,7 +201,7 @@ export default function Home() {
             mainClassName={styles.headline}
           />
           <p className={styles.description}>to help you grow your business in today&apos;s digital era.</p>
-          <button className={styles.ctaButton} onClick={() => {setModalActive(true)}}>Learn More</button>
+          <button className={styles.ctaButton} onClick={() => {setModalActive(true)}}><span>Learn More</span></button>
         </div>
         <div className={`${styles.illustrationContainer} ${isFading ? styles.fading : ''}`}>
            <div className={styles.circleContainer}>

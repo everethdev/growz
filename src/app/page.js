@@ -42,7 +42,8 @@ export default function Home() {
     // CORRECTED SCROLL HANDLER
     const handleScrollTo = (e) => {
       if (locomotiveScroll) {
-        locomotiveScroll.scrollTo(e.detail.target, {
+        const target = e.detail.target === '/' ? 0 : e.detail.target;
+        locomotiveScroll.scrollTo(target, {
           duration: 1.8, // This controls the scroll speed for a smooth effect
           // The incorrect 'easing' line has been removed.
         });
