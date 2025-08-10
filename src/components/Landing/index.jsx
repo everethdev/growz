@@ -1,8 +1,10 @@
+
 'use client'
 import styles from './style.module.scss'
 import { motion } from 'framer-motion';
 import { useState, useEffect, useMemo } from 'react';
 import ServicesModal from '../ServicesModal';
+import RotatingText from './RotatingText';
 
 const slideUp = {
     initial: { y: "100%" },
@@ -189,7 +191,15 @@ export default function Home() {
       <main className={styles.mainContent}>
         <div className={styles.textContainer}>
           <p className={styles.microcopy}>We offer</p>
-          <h1 className={styles.headline}>High-End Consultancy</h1>
+          <RotatingText
+            texts={['High-End Consultancy', 'AI-Powered Solutions', 'Web Development']}
+            staggerFrom={"first"}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+            transition={{ type: "spring", damping: 30, stiffness: 400 }}
+            rotationInterval={3000}
+            mainClassName={styles.headline}
+          />
           <p className={styles.description}>to help you grow your business in today&apos;s digital era.</p>
           <button className={styles.ctaButton} onClick={() => {setModalActive(true)}}>Learn More</button>
         </div>

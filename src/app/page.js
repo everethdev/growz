@@ -6,6 +6,7 @@ import Preloader from '../components/Preloader';
 import Landing from '../components/Landing';
 import Projects from '../components/Projects';
 import Description from '../components/Description';
+import OurServices from '../components/OurServices';
 import SlidingImages from '../components/SlidingImages';
 import Contact from '../components/Contact';
 import ServicesModal from '../components/ServicesModal';
@@ -72,6 +73,9 @@ export default function Home() {
       <Description data-scroll-section/>
       <div id="work" data-scroll-section>
         <Projects />
+      </div>
+      <div id="services" data-scroll-section>
+        <OurServices />
       </div>
       <SlidingImages data-scroll-section/>
       <div id="contact" data-scroll-section>

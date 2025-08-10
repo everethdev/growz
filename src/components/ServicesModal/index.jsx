@@ -5,24 +5,14 @@ import { opacity, slideUp } from './animation';
 
 const services = [
     {
-        title: "Artificial Intelligence Consulting",
-        description: "Our AI consultants and data scientists help you identify high-impact opportunities to apply artificial intelligence across your business. We design practical, forward-looking solutions that drive growth, efficiency, and long-term value.",
-        points: [
-            "Custom Pre-Training",
-            "Enterprise Integration",
-            "Optimized Deployment",
-            "Simple Control"
-        ]
+        title: "Who We Are",
+        description: "A multidisciplinary team of builders, creators, and thinkers who combine strategy and execution to help organizations grow and evolve with confidence.",
+        
     },
     {
-        title: "Web & Application Development",
-        description: "Websites and Mobile Apps Designed for Security, Scalability, and Performance. Our web development services are built to drive real business value, creating reliable, high-impact digital solutions tailored to your needs.",
-        points: [
-            "Expert Website Accessibility (WCAG, ADA, EAA)",
-            "Scalable Architectures",
-            "Performance Optimization",
-            "Secure Development Lifecycle"
-        ]
+        title: "What We Do",
+        description: "We specialize in high-quality digital services designed to accelerate business growth. Combining the power of AI innovation with human creativity, we transform strategy and technology into real-world impact.",
+        
     }
 ];
 
@@ -39,7 +29,7 @@ export default function ServicesModal({ active, setActive }) {
                     <div className={styles.modalSlider}>
                         <div className={styles.modal}>
                             <div className={styles.header}>
-                                <motion.h2 variants={slideUp} initial="initial" animate="enter" exit="exit">Our Services</motion.h2>
+                                <motion.h2 variants={slideUp} initial="initial" animate="enter" exit="exit">About Us</motion.h2>
                                 <div onClick={() => { setActive(false) }} className={styles.closeButton}>
                                     <p>Close</p>
                                 </div>
@@ -49,11 +39,7 @@ export default function ServicesModal({ active, setActive }) {
                                     <div key={index} className={styles.service}>
                                         <motion.h3 variants={slideUp} initial="initial" animate="enter" exit="exit">{service.title}</motion.h3>
                                         <motion.p variants={slideUp} initial="initial" animate="enter" exit="exit">{service.description}</motion.p>
-                                        <ul>
-                                            {service.points.map((point, pIndex) => (
-                                                <motion.li key={pIndex} variants={slideUp} initial="initial" animate="enter" exit="exit">{point}</motion.li>
-                                            ))}
-                                        </ul>
+                
                                     </div>
                                 ))}
                             </div>
