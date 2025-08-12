@@ -9,24 +9,46 @@ import Rounded from '../../common/RoundedButton';
 
 const projects = [
   {
-    title: "Loro Piana",
-    src: "c2montreal.png",
-    color: "#000000"
+    title: "Urbano Properties",
+    logo: "urbano.jpg",
+    metadata: ["Real Estate", "Properties", "Housing"],
+    src: "urbano.jpg",
+    color: "#FFFFFF"
   },
   {
-    title: "Studio Code",
-    src: "officestudio.png",
-    color: "#8C8C8C"
+    title: "Unic Consulting",
+    logo: "unic.jpg",
+    metadata: ["Consultancy", "Investments", "Business"],
+    src: "unic.jpg",
+    color: "#FFFFFF"
   },
   {
-    title: "EverETH",
-    src: "locomotive.png",
-    color: "#EFE8D3"
+    title: "Ioanida Consulting",
+    logo: "ioanida.jpg",
+    metadata: ["Consultancy", "Investments", "Business"],
+    src: "ioanida.jpg",
+    color: "#FFFFFF"
   },
   {
-    title: "Petrovan Petroleum",
-    src: "silencio.png",
-    color: "#706D63"
+    title: "Kaufland",
+    logo: "kaufland.svg",
+    metadata: ["E-commerce", "Fashion", "Asia"],
+    src: "kaufland.svg",
+    color: "#FFFFFF"
+  },
+  {
+    title: "Dedeman",
+    logo: "dedeman.png",
+    metadata: ["Consulting", "Business", "EMEA"],
+    src: "dedeman.png",
+    color: "#FFFFFF"
+  },
+  {
+    title: "SpaceX",
+    logo: "space-x-logo.png",
+    metadata: ["Education", "Tech", "USA"],
+    src: "space-x-logo.png",
+    color: "#FFFFFF"
   }
 ]
 
@@ -81,7 +103,7 @@ export default function Home() {
     <div className={styles.body}>
       {
         projects.map( (project, index) => {
-          return <Project index={index} title={project.title} manageModal={manageModal} key={index}/>
+          return <Project index={index} title={project.title} manageModal={manageModal} key={index} logo={project.logo} metadata={project.metadata}/>
         })
       }
     </div>

@@ -8,9 +8,23 @@ const services = [
   {
     id: 'ai',
     title: 'Artificial Intelligence Consulting Services',
-    subtitle: 'Domain-Specialized AI Agents for Your Business',
+    subtitle: 'Practical AI Solutions for Real Business Impact',
     description:
       'Our AI consultants and data scientists help you identify high-impact opportunities to apply artificial intelligence across your business. We design practical, forward-looking solutions that drive growth, efficiency, and long-term value.',
+    points: [
+      'AI Strategy Development: Collaborate with you to define a clear AI roadmap aligned with your business goals.',
+      'Workflow Automation: Identify and automate repetitive tasks to free up your team for higher-value work.',
+      'Enhanced Decision-Making: Leverage AI to analyze data and provide actionable insights for better decision-making.',
+      'Rapid Prototyping: Quickly build and test AI models to validate concepts before full-scale implementation.',
+    ],
+
+  },
+    {
+    id: 'ai2',
+    title: 'Domain-Specialized AI Agents for Your Business',
+    subtitle: 'Tailored AI Solutions for Industry-Specific Challenges',
+    description:
+      'We build AI agents tailored to your specific industry and use cases, leveraging the latest advancements in natural language processing and machine learning. Our solutions are designed to integrate seamlessly with your existing workflows, enhancing productivity and decision-making.',
     points: [
       'Custom Pre-Training: Train models from scratch or refine open-source checkpoints using your proprietary data.',
       'Enterprise Integration: Connect to your internal systems with custom tools, prompt libraries, and RAG-based solutions.',
@@ -25,6 +39,22 @@ const services = [
       'Websites and Mobile Apps Designed for Security, Scalability, and Performance',
     description:
       'Our web development services are built to drive real business value. Whether you need a straightforward implementation or a full-scale redesign, we bring cross-functional teams together to create reliable, high-impact digital solutions tailored to your needs.',
+        points: [
+      'Full-Stack Expertise: From front-end to back-end, we cover all aspects of web and app development.',
+      'Extensive Frameworks: Proficient in React, Angular, Vue.js, Node.js, and more.',
+      'Mobile-First Design: Responsive and adaptive designs for optimal user experiences across devices.',
+      'Security-First Approach: Implementing best practices to protect your data and users.',
+      'Scalable Solutions: Architected for growth, ensuring your applications can handle increased traffic and complexity.',
+    ],
+
+  },
+  {
+    id: 'web2',
+    title: 'Expert Website Accessibility Services for WCAG Compliance',
+    subtitle:
+      'Ensuring Your Digital Presence is Inclusive and Compliant',
+    description:
+      'Your website should be accessible to everyone, regardless of ability. Our accessibility experts help you meet WCAG standards and ensure your digital content is usable by all, enhancing user experience and expanding your audience reach.',
     accessibilityTitle:
       'Expert Website Accessibility Services for WCAG Compliance',
     compliance: ['Americans with Disabilities Act (ADA)', 'European Accessibility Act (EAA)'],

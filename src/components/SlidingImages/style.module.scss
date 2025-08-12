@@ -18,12 +18,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            .imageContainer{
-                position: relative;
-                width: 80%;
-                height: 80%;
-                img{
-                    object-fit: cover;
+            .testimonialContainer{
+                padding: 20px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .avatar{
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background-color: #616161;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: white;
+                    margin-bottom: 10px;
+                }
+                .testimonialText{
+                    font-size: 18px;
+                    font-style: italic;
+                    color: #333;
+                }
+                .testimonialAuthor{
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-top: 10px;
+                    color: #1d1d1d;
                 }
             }
         }
