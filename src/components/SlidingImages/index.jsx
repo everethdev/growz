@@ -78,7 +78,7 @@ export default function SlidingImages() {
                                     <div className={styles.avatar}>
                                         {getInitials(testimonial.author)}
                                     </div>
-                                    <p className={styles.testimonialText}>"{testimonial.text}"</p>
+                                    <p className={styles.testimonialText}>&quot;{testimonial.text}&quot;</p>
                                     <p className={styles.testimonialAuthor}>- {testimonial.author}</p>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ export default function SlidingImages() {
                                     <div className={styles.avatar}>
                                         {getInitials(testimonial.author)}
                                     </div>
-                                    <p className={styles.testimonialText}>"{testimonial.text}"</p>
+                                    <p className={styles.testimonialText}>&quot;{testimonial.text}&quot;</p>
                                     <p className={styles.testimonialAuthor}>- {testimonial.author}</p>
                                 </div>
                             </div>
