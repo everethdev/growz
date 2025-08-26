@@ -5,7 +5,7 @@ import Header from '../components/Header';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Growz. High-End Consulting',
+  title: 'Paradigm Global. High-End Consulting',
   description: 'Consulting for your business',
 }
 

@@ -56,7 +56,7 @@ export default function Contact() {
                 </div>
                 <div className={styles.nav}>
                         <Rounded>
-                            <p>contact@growz.com</p>
+                            <p>contact@paradigmglobal.com</p>
                         </Rounded>
                         <Rounded>
                             <p>+40 (751) 943 797</p>
