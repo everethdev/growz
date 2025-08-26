@@ -1,107 +1,140 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import styles from './style.module.scss';
 
-const testimonials1 = [
+const REVIEWS = [
     {
-        color: "#e3e5e7",
-        text: "The team's expertise and dedication were instrumental in our success. They delivered beyond our expectations.",
-        author: "John Doe, CEO of Company A"
+        id: 6,
+        name: 'Alice',
+        role: 'Data Scientist',
+        avatar: 'https://i.pravatar.cc/150?img=23',
+        review: `Absolutely mind-blowing! From graphics to gameplay, it's a virtual masterpiece. I lost track of time in the immersive experience.`,
     },
     {
-        color: "#d6d7dc",
-        text: "Working with them was a pleasure. Their professionalism and attention to detail are commendable.",
-        author: "Jane Smith, Marketing Director at Company B"
+        id: 0,
+        name: 'Bob',
+        role: 'Architect',
+        avatar: 'https://i.pravatar.cc/150?img=13',
+        review: `A hidden gem for tech enthusiasts. The selection is vast, and the ease of discovering new tech is addictively delightful!`,
     },
     {
-        color: "#e3e3e3",
-        text: "Their innovative solutions helped us overcome significant challenges. We highly recommend their services.",
-        author: "Peter Jones, CTO of Company C"
+        id: 2,
+        name: 'Charlie',
+        role: 'DevOps Engineer',
+        avatar: 'https://i.pravatar.cc/150?img=8',
+        review: `Results speak louder than words. I've never seen progress like this. The workflows are challenging but oh-so-rewarding. Kudos!`,
     },
     {
-        color: "#969696ff",
-        text: "A truly collaborative partner. They understood our vision and brought it to life with creativity and precision.",
-        author: "Mary Williams, Product Manager at Company D"
-    }
-]
+        id: 3,
+        name: 'Diana',
+        role: 'Product Manager',
+        avatar: 'https://i.pravatar.cc/150?img=41',
+        review: `It's very easy to customize and categorize lists for new projects/task categories.`,
+    },
+    {
+        id: 13,
+        name: 'Ethan',
+        role: 'Software Engineer',
+        avatar: 'https://i.pravatar.cc/150?img=57',
+        review: `An adventure for the curious mind. Every click led to a new discovery. It's like a digital journey through the wonders of the internet.`,
+    },
+    {
+        id: 4,
+        name: 'Fiona',
+        role: 'Marketing Specialist',
+        avatar: 'https://i.pravatar.cc/150?img=42',
+        review: `Plan, create, and explore seamlessly. This service made my creative dreams a reality. Smooth navigation, and the recommendations were spot on.`,
+    },
+    {
+        id: 10,
+        name: 'George',
+        role: 'Software Developer',
+        avatar: 'https://i.pravatar.cc/150?img=21',
+        review: `A game-changer for organization. Tasks, calendars, notes – everything neatly synced. My life has never been this streamlined. Pure genius!`,
+    },
+    {
+        id: 11,
+        name: 'Hannah',
+        role: 'Graphic Designer',
+        avatar: 'https://i.pravatar.cc/150?img=18',
+        review: `Drowning in a sea of creativity. The content here is a visual feast. An endless source of inspiration for my artistic endeavors.`,
+    },
+    {
+        id: 5,
+        name: 'Ian',
+        role: 'CTO',
+        avatar: 'https://i.pravatar.cc/150?img=33',
+        review: `Discovering new beats is addictive with this service. The curated playlists are spot-on, and the personalized recommendations are eerily accurate. A music lover's paradise!`,
+    },
+];
 
-const testimonials2 = [
-    {
-        color: "#d4e3ec",
-        text: "Their strategic insights and data-driven approach provided us with a competitive edge in the market.",
-        author: "David Brown, Head of Strategy at Company E"
-    },
-    {
-        color: "#e5e0e1",
-        text: "The level of professionalism and commitment to our project was outstanding. We are thrilled with the results.",
-        author: "Susan Miller, COO of Company F"
-    },
-    {
-        color: "#d7d4cf",
-        text: "They are not just consultants; they are true partners in our growth journey. Their impact has been transformative.",
-        author: "Michael Clark, Founder of Company G"
-    },
-    {
-        color: "#e1dad6",
-        text: "Exceptional service and support. They were always available to address our concerns and provide expert guidance.",
-        author: "Emily White, Head of Operations at Company H"
-    }
-]
-
-const getInitials = (name) => {
-    const names = name.split(' ');
-    if (names.length > 1) {
-        return `${names[0][0]}${names[1][0]}`;
-    }
-    return names[0].substring(0, 2);
-}
-
-export default function SlidingImages() {
-
+export default function Index() {
     const container = useRef(null);
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ["start end", "end start"]
-    })
+    });
+    const height = useTransform(scrollYProgress, [0, 0.9], [50, 0]);
 
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [outgoingIndex, setOutgoingIndex] = useState(null);
 
-    const height = useTransform(scrollYProgress, [0, 0.9], [50, 0])
+    const slide = (direction) => {
+        if (outgoingIndex !== null) return;
+
+        const nextIndex = direction === 'next'
+            ? (currentIndex + 1) % REVIEWS.length
+            : (currentIndex - 1 + REVIEWS.length) % REVIEWS.length;
+
+        setOutgoingIndex(currentIndex);
+        setCurrentIndex(nextIndex);
+
+        setTimeout(() => {
+            setOutgoingIndex(null);
+        }, 500); // Match transition duration
+    };
 
     return (
         <div ref={container} className={styles.slidingImages}>
-            <motion.div className={styles.slider}>
-                    {
-                        testimonials1.map( (testimonial, index) => {
-                            return <div key={index} className={styles.project} style={{backgroundColor: testimonial.color}} >
-                                <div className={styles.testimonialContainer}>
-                                    <div className={styles.avatar}>
-                                        {getInitials(testimonial.author)}
+            <main className={styles.main}>
+                <h1 className={styles.h1}>A word from our customers</h1>
+                <p className={styles.p}>We've been helping businesses do their best since inception.</p>
+
+                <div className={styles.sliderContainer}>
+                    <button onClick={() => slide('prev')} className={styles.navButton}>
+         
+                    </button>
+                    <div className={styles.slider}>
+                        <div className={styles.listCards}>
+                            {REVIEWS.map((review, index) => (
+                                <div
+                                    key={review.id}
+                                    className={`
+                                        ${styles.card}
+                                        ${index === currentIndex ? styles.active : ''}
+                                        ${index === outgoingIndex ? styles.out : ''}
+                                    `}
+                                >
+                                    <blockquote className={styles.blockquote}>
+                                        {`"${review.review}"`}
+                                    </blockquote>
+                                    <div className={styles.details}>
+                                        <img src={review.avatar} alt={review.name} className={styles.avatar} />
+                                        <div>
+                                            <p className={styles.reviewName}>{review.name}</p>
+                                            <p className={styles.reviewRole}>{review.role}</p>
+                                        </div>
                                     </div>
-                                    <p className={styles.testimonialText}>&quot;{testimonial.text}&quot;</p>
-                                    <p className={styles.testimonialAuthor}>- {testimonial.author}</p>
                                 </div>
-                            </div>
-                        })
-                    }
-                </motion.div>
-                <motion.div className={styles.slider}>
-                    {
-                        testimonials2.map( (testimonial, index) => {
-                            return <div key={index} className={styles.project} style={{backgroundColor: testimonial.color}} >
-                                <div key={index} className={styles.testimonialContainer}>
-                                    <div className={styles.avatar}>
-                                        {getInitials(testimonial.author)}
-                                    </div>
-                                    <p className={styles.testimonialText}>&quot;{testimonial.text}&quot;</p>
-                                    <p className={styles.testimonialAuthor}>- {testimonial.author}</p>
-                                </div>
-                            </div>
-                        })
-                    }
-                </motion.div>
-                <motion.div style={{height}} className={styles.circleContainer}>
-                    <div className={styles.circle}></div>
-                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                    <button onClick={() => slide('next')} className={styles.navButton}>
+                       
+                    </button>
+                </div>
+            </main>
+
         </div>
-    )
+    );
 }

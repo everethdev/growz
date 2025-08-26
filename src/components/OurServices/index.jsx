@@ -49,6 +49,18 @@ const services = [
 
   },
   {
+    id: 'web3',
+    title: 'Web3 Services Suite',
+    subtitle: 'Unlock the power of blockchain with solutions designed for you business',
+    description:
+      'Our Web3 services help you harness the power of decentralized technologies. From tokenization and smart contracts to custom dApp development, we provide end-to-end solutions to future-proof your business.',
+    points: [
+      'Tokenization & Smart Contracts - Fractionalize ownership, streamline agreements, and raise capital through secure, transparent digital assets',
+      'Crypto Payments - Accept and manage crypto transactions with seamless wallet integrations and stablecoin settlement options',
+      'Blockchain Infrastructure & dApp Development - Build scalable decentralized applications and robust blockchain systems tailored to your business needs',
+    ],
+  },
+  {
     id: 'web2',
     title: 'Expert Website Accessibility Services for WCAG Compliance',
     subtitle:
