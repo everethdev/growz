@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import styles from './style.module.scss';
 
 const REVIEWS = [
@@ -7,14 +6,14 @@ const REVIEWS = [
         id: 6,
         name: 'Alice',
         role: 'Data Scientist',
-        avatar: 'https://i.pravatar.cc/150?img=23',
+        avatar: 'https://hips.hearstapps.com/hmg-prod/images/openai-ceo-sam-altman-poses-during-the-artificial-news-photo-1755716119.pjpeg?crop=0.655xw:0.980xh;0.0459xw,0.0204xh&resize=640:*',
         review: `Absolutely mind-blowing! From graphics to gameplay, it's a virtual masterpiece. I lost track of time in the immersive experience.`,
     },
     {
         id: 0,
         name: 'Bob',
         role: 'Architect',
-        avatar: 'https://i.pravatar.cc/150?img=13',
+        avatar: 'https://image.cnbcfm.com/api/v1/image/108043097-1727989387071-gettyimages-2173579179-META_CONNECT.jpeg?v=1744292077&w=800&h=600&ffmt=webp',
         review: `A hidden gem for tech enthusiasts. The selection is vast, and the ease of discovering new tech is addictively delightful!`,
     },
     {
@@ -69,15 +68,10 @@ const REVIEWS = [
 ];
 
 export default function Index() {
-    const container = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ["start end", "end start"]
-    });
-    const height = useTransform(scrollYProgress, [0, 0.9], [50, 0]);
-
     const [currentIndex, setCurrentIndex] = useState(0);
     const [outgoingIndex, setOutgoingIndex] = useState(null);
+    const [isPaused, setIsPaused] = useState(false);
+    const intervalRef = useRef(null);
 
     const slide = (direction) => {
         if (outgoingIndex !== null) return;
@@ -91,16 +85,42 @@ export default function Index() {
 
         setTimeout(() => {
             setOutgoingIndex(null);
-        }, 500); // Match transition duration
+        }, 100); // Match transition duration
     };
 
+    const startSlider = () => {
+        intervalRef.current = setInterval(() => {
+            slide('next');
+        }, 100);
+    };
+
+    const pauseSlider = () => {
+        clearInterval(intervalRef.current);
+    };
+
+    useEffect(() => {
+        if (!isPaused) {
+            startSlider();
+        }
+
+        return () => {
+            pauseSlider();
+        };
+    }, [isPaused]);
+
     return (
-        <div ref={container} className={styles.slidingImages}>
+        <div 
+            className={styles.slidingImages}
+        >
             <main className={styles.main}>
                 <h1 className={styles.h1}>A word from our customers</h1>
                 <p className={styles.p}>We've been helping businesses do their best since inception.</p>
 
-                <div className={styles.sliderContainer}>
+                <div 
+                    className={styles.sliderContainer}
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
                     <button onClick={() => slide('prev')} className={styles.navButton}>
          
                     </button>
