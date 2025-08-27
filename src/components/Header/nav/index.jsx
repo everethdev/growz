@@ -31,7 +31,7 @@ const navItems = [
   },
 ]
 
-export default function Nav() {
+export default function Nav({closeMenu}) {
 
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
@@ -50,6 +50,7 @@ export default function Nav() {
     
     // Update the visual indicator on click
     setSelectedIndicator(data.href);
+    closeMenu();
   };
 
   return (

@@ -25,7 +25,7 @@ export default function Header() {
             </Rounded>
         </div>
         <AnimatePresence mode="wait">
-            {isActive && <Nav />}
+            {isActive && <Nav closeMenu={() => {setIsActive(false)}} />}
         </AnimatePresence>
         </>
     )
