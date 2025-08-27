@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import styles from './style.module.scss';
 
@@ -69,29 +70,20 @@ const REVIEWS = [
 
 export default function Index() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [outgoingIndex, setOutgoingIndex] = useState(null);
     const [isPaused, setIsPaused] = useState(false);
     const intervalRef = useRef(null);
 
     const slide = (direction) => {
-        if (outgoingIndex !== null) return;
-
         const nextIndex = direction === 'next'
             ? (currentIndex + 1) % REVIEWS.length
             : (currentIndex - 1 + REVIEWS.length) % REVIEWS.length;
-
-        setOutgoingIndex(currentIndex);
         setCurrentIndex(nextIndex);
-
-        setTimeout(() => {
-            setOutgoingIndex(null);
-        }, 100); // Match transition duration
     };
 
     const startSlider = () => {
         intervalRef.current = setInterval(() => {
             slide('next');
-        }, 100);
+        }, 3000);
     };
 
     const pauseSlider = () => {
@@ -106,12 +98,10 @@ export default function Index() {
         return () => {
             pauseSlider();
         };
-    }, [isPaused]);
+    }, [isPaused, currentIndex]);
 
     return (
-        <div 
-            className={styles.slidingImages}
-        >
+        <div className={styles.slidingImages}>
             <main className={styles.main}>
                 <h1 className={styles.h1}>A word from our customers</h1>
                 <p className={styles.p}>We've been helping businesses do their best since inception.</p>
@@ -122,18 +112,18 @@ export default function Index() {
                     onMouseLeave={() => setIsPaused(false)}
                 >
                     <button onClick={() => slide('prev')} className={styles.navButton}>
-         
+                        
                     </button>
                     <div className={styles.slider}>
                         <div className={styles.listCards}>
                             {REVIEWS.map((review, index) => (
-                                <div
+                                <motion.div
                                     key={review.id}
-                                    className={`
-                                        ${styles.card}
-                                        ${index === currentIndex ? styles.active : ''}
-                                        ${index === outgoingIndex ? styles.out : ''}
-                                    `}
+                                    className={styles.card}
+                                    initial={{ opacity: 0, scale: 0.8, x: (index === currentIndex) ? 0 : (index > currentIndex ? '100%' : '-100%') }}
+                                    animate={{ opacity: (index === currentIndex) ? 1 : 0, scale: (index === currentIndex) ? 1 : 0.8, x: 0 }}
+                                    exit={{ opacity: 0, scale: 0.8, x: (index < currentIndex) ? '-100%' : '100%' }}
+                                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                                 >
                                     <blockquote className={styles.blockquote}>
                                         {`"${review.review}"`}
@@ -145,7 +135,7 @@ export default function Index() {
                                             <p className={styles.reviewRole}>{review.role}</p>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                     </div>
@@ -154,7 +144,6 @@ export default function Index() {
                     </button>
                 </div>
             </main>
-
         </div>
     );
 }

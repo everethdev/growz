@@ -90,6 +90,9 @@
         }
       }
     }
+    .mobileServiceDetails {
+      overflow: hidden;
+    }
 
     .serviceDetails {
       width: 60%;
@@ -227,14 +230,82 @@
 
 @media (max-width: 900px) {
   .ourServices {
-    padding: 100px 60px;
+    padding: 100px 40px;
     .header h2 { font-size: 42px; }
     .body {
       flex-direction: column;
-      gap: 40px;
+      gap: 0;
       .serviceList, .serviceDetails {
         width: 100%;
         padding: 0;
+      }
+
+      .serviceList {
+        gap: 0;
+        border-top: 1px solid #e0e0e0;
+      }
+      
+      .accordionItem {
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .serviceTitle {
+        padding: 20px 15px;
+        border-radius: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        transition: background-color 0.3s ease;
+
+        &.active {
+          background-color: #f0f0f0;
+
+          .accordionIcon {
+            &::before {
+              transform: rotate(90deg);
+            }
+            &::after {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+      
+      .titleContent {
+        flex: 1;
+      }
+      
+      .accordionIcon {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        flex-shrink: 0;
+        
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          background-color: #1C1D20;
+          transition: transform 0.3s ease;
+        }
+
+        &::before {
+          width: 100%;
+          height: 2px;
+          left: 0;
+          top: 9px;
+        }
+
+        &::after {
+          width: 2px;
+          height: 100%;
+          left: 9px;
+          top: 0;
+        }
+      }
+      
+      .mobileServiceDetails .mobileDetailsContent {
+        padding: 0 15px 24px 15px;
       }
     }
   }
@@ -242,9 +313,9 @@
 
 @media (max-width: 600px) {
   .ourServices {
-    padding: 80px 24px;
+    padding: 80px 20px;
     .header h2 { font-size: 36px; }
-    .body .serviceList .serviceTitle h3 { font-size: 22px; }
-    .body .serviceDetails .lead { font-size: 18px; }
+    .body .serviceList .serviceTitle h3 { font-size: 20px; }
+    .body .serviceDetails .lead { font-size: 17px; }
   }
 }

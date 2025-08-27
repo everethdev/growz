@@ -79,3 +79,36 @@
         }
     }
 }
+
+@media (max-width: 1024px) {
+    .services {
+        padding: 100px;
+
+        .body {
+            flex-direction: column;
+            gap: 50px;
+
+            .serviceList, .serviceDetails {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .services {
+        padding: 50px 20px;
+
+        .header h2 {
+            font-size: 40px;
+        }
+
+        .body .serviceList .serviceTitle h3 {
+            font-size: 22px;
+        }
+
+        .body .serviceDetails p {
+            font-size: 18px;
+        }
+    }
+}

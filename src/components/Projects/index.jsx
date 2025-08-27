@@ -10,30 +10,30 @@ import Rounded from '../../common/RoundedButton';
 const projects = [
   {
     title: "Urbano Properties",
-    logo: "urbano.jpg",
+    logo: "UrbanoLogo.png",
     metadata: ["Real Estate", "Properties", "Housing"],
-    src: "urbano.jpg",
+    src: "UrbanoLogo.png",
     color: "#FFFFFF"
   },
   {
     title: "Unic Consulting",
-    logo: "unic.jpg",
+    logo: "UnicSportsLogo.png",
     metadata: ["Consultancy", "Investments", "Business"],
-    src: "unic.jpg",
+    src: "UnicSportsLogo.png",
     color: "#FFFFFF"
   },
   {
     title: "Ioanida Consulting",
-    logo: "ioanida.jpg",
+    logo: "IoanidaLogo.png",
     metadata: ["Consultancy", "Investments", "Business"],
-    src: "ioanida.jpg",
+    src: "IoanidaLogo.png",
     color: "#FFFFFF"
   },
   {
-    title: "Kaufland",
-    logo: "kaufland.svg",
+    title: "Termo Casa",
+    logo: "TermoCasaLogo.png",
     metadata: ["E-commerce", "Fashion", "Asia"],
-    src: "kaufland.svg",
+    src: "TermoCasaLogo.png",
     color: "#FFFFFF"
   },
   {

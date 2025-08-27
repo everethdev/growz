@@ -21,41 +21,48 @@ export default function Home() {
   useEffect( () => {
     let locomotiveScroll;
 
-    (
-      async () => {
-          const LocomotiveScroll = (await import('locomotive-scroll')).default;
-          locomotiveScroll = new LocomotiveScroll({
-            el: mainRef.current,
-            smooth: true,
-          });
+    const initLocomotiveScroll = async () => {
+      const LocomotiveScroll = (await import('locomotive-scroll')).default;
+      locomotiveScroll = new LocomotiveScroll({
+        el: mainRef.current,
+        smooth: true,
+      });
+    }
 
-          setTimeout( () => {
-            setIsLoading(false);
-            document.body.style.cursor = 'default'
-            window.scrollTo(0,0);
-          }, 2000)
-      }
-    )();
+    initLocomotiveScroll();
+
+    setTimeout( () => {
+      setIsLoading(false);
+      document.body.style.cursor = 'default'
+      window.scrollTo(0,0);
+    }, 2000)
 
     const handleOpenModal = () => setModalActive(true);
     
-    // CORRECTED SCROLL HANDLER
     const handleScrollTo = (e) => {
       if (locomotiveScroll) {
         const target = e.detail.target === '/' ? 0 : e.detail.target;
         locomotiveScroll.scrollTo(target, {
-          duration: 1.8, // This controls the scroll speed for a smooth effect
-          // The incorrect 'easing' line has been removed.
+          duration: 1.8, 
         });
       }
     };
 
+    const handleResize = () => {
+      if (locomotiveScroll) {
+        locomotiveScroll.destroy();
+        initLocomotiveScroll();
+      }
+    }
+
     window.addEventListener('openAboutModal', handleOpenModal);
     window.addEventListener('scrollToSection', handleScrollTo);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('openAboutModal', handleOpenModal);
       window.removeEventListener('scrollToSection', handleScrollTo);
+      window.removeEventListener('resize', handleResize);
       if (locomotiveScroll) locomotiveScroll.destroy();
     }
   }, [])

@@ -115,8 +115,6 @@
 
     .card {
         grid-area: stack;
-        opacity: 0;
-        transition: all 0.5s ease-in-out;
         filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.05));
 
         .blockquote {
@@ -126,10 +124,8 @@
             padding: 2rem;
             font-size: 1rem;
             line-height: 1.6;
-            transform: scale(0);
             position: relative;
             isolation: isolate;
-            transition: all 0.5s ease-in-out;
 
             &::before {
                 content: '';
@@ -140,15 +136,12 @@
                 bottom: -0.625rem;
                 left: 50%;
                 z-index: -1;
-                transition: all 0.5s ease-in-out 0.5s;
                 transform: rotate(45deg) translateX(-50%) translateY(-100%);
             }
         }
 
         .details {
             font-size: 0.875rem;
-            transform: translateY(150px);
-            transition: all 0.5s ease-in-out;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -176,32 +169,6 @@
         }
     }
 
-    .card.active {
-        opacity: 1;
-        .blockquote {
-            transform: scale(1);
-            &::before {
-                transform: rotate(45deg) translateX(-50%) translateY(0);
-            }
-        }
-        .details {
-            transform: translateY(0);
-        }
-    }
-    
-    .card.out {
-        opacity: 0;
-        .blockquote {
-            transform: scale(0);
-            &::before {
-                transform: rotate(45deg) translateX(-50%) translateY(-100%);
-            }
-        }
-        .details {
-            transform: translateY(150px);
-        }
-    }
-
     .circleContainer{
         background: #455CE9;
         position: absolute;
@@ -221,5 +188,26 @@
             background-color: black;
             border-radius: 50%;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .slidingImages .main {
+        padding: 2rem 1rem;
+    }
+
+    .slidingImages .h1 {
+        font-size: 2rem;
+    }
+
+    .slidingImages .sliderContainer {
+        grid-template-columns: 40px auto 40px;
+        gap: 1rem;
+    }
+
+    .slidingImages .navButton {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
     }
 }

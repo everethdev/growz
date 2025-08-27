@@ -83,7 +83,21 @@ export default function OurServices() {
   const listItemRefs = useRef([]);
   const measureRefs = useRef([]);
 
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeMobileServiceId, setActiveMobileServiceId] = useState(null);
+
   useLayoutEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (isMobile) return;
+
     const calculateHeight = () => {
       const heights = measureRefs.current.map((el) => el?.offsetHeight || 0);
       const newMaxHeight = Math.max(0, ...heights);
@@ -95,9 +109,11 @@ export default function OurServices() {
     calculateHeight();
     window.addEventListener('resize', calculateHeight);
     return () => window.removeEventListener('resize', calculateHeight);
-  }, [maxHeight]);
+  }, [isMobile, maxHeight]);
 
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const listEl = serviceListRef.current;
     const itemEl = listItemRefs.current[selected];
     if (!listEl || !itemEl) return;
@@ -109,7 +125,7 @@ export default function OurServices() {
       top: itemRect.top - listRect.top + listEl.scrollTop,
       height: itemRect.height,
     });
-  }, [selected]);
+  }, [selected, isMobile]);
 
   const onKeySelect = (e, index) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -117,6 +133,40 @@ export default function OurServices() {
       setSelected(index);
     }
   };
+
+  const handleMobileSelect = (serviceId) => {
+    setActiveMobileServiceId(activeMobileServiceId === serviceId ? null : serviceId);
+  };
+
+  const ServiceDetailsContent = ({ service }) => (
+    <>
+      <p className={styles.lead}>{service.description}</p>
+      {service.points && (
+        <motion.ul className={styles.chips} variants={listStagger}>
+          {service.points.map((pt, idx) => (
+            <motion.li key={idx} variants={itemFade}>
+              {pt}
+            </motion.li>
+          ))}
+        </motion.ul>
+      )}
+      {service.accessibilityTitle && (
+        <div className={styles.accessibility}>
+          <h4>{service.accessibilityTitle}</h4>
+          {service.compliance && (
+            <motion.ul className={styles.chips} variants={listStagger}>
+              {service.compliance.map((c, idx) => (
+                <motion.li key={idx} variants={itemFade}>
+                  {c}
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
+          {service.extra && <p className={styles.extra}>{service.extra}</p>}
+        </div>
+      )}
+    </>
+  );
 
   return (
     <motion.section 
@@ -133,108 +183,96 @@ export default function OurServices() {
       <div className={styles.body}>
         <motion.div 
           className={styles.serviceList} 
-          role="tablist" 
+          role={isMobile ? 'list' : 'tablist'}
           aria-orientation="vertical" 
           ref={serviceListRef}
           variants={titleStagger}
         >
-          <motion.div
-            className={styles.indicator}
-            animate={{ top: indicator.top, height: indicator.height }}
-            transition={{ type: 'spring', stiffness: 500, damping: 40 }}
-          />
-          {services.map((s, i) => (
+          {!isMobile && (
             <motion.div
-              key={s.id}
-              role="tab"
-              tabIndex={0}
-              aria-selected={selected === i}
-              className={`${styles.serviceTitle} ${selected === i ? styles.active : ''}`}
-              onClick={() => setSelected(i)}
-              onKeyDown={(e) => onKeySelect(e, i)}
-              ref={(el) => (listItemRefs.current[i] = el)}
-              variants={titleItem}
-              whileHover={{ x: 5 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-            >
-              <h3>{s.title}</h3>
-              {s.subtitle && <p className={styles.subtitle}>{s.subtitle}</p>}
-            </motion.div>
+              className={styles.indicator}
+              animate={{ top: indicator.top, height: indicator.height }}
+              transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+            />
+          )}
+          {services.map((s, i) => (
+            <div key={s.id} className={styles.accordionItem}>
+              <motion.div
+                role={isMobile ? 'button' : 'tab'}
+                tabIndex={0}
+                aria-selected={!isMobile && selected === i}
+                aria-expanded={isMobile && activeMobileServiceId === s.id}
+                className={`${styles.serviceTitle} ${selected === i && !isMobile ? styles.active : ''} ${activeMobileServiceId === s.id && isMobile ? styles.active : ''}`}
+                onClick={() => isMobile ? handleMobileSelect(s.id) : setSelected(i)}
+                onKeyDown={(e) => !isMobile && onKeySelect(e, i)}
+                ref={(el) => (listItemRefs.current[i] = el)}
+                variants={titleItem}
+                whileHover={!isMobile ? { x: 5 } : {}}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+              >
+                <div className={styles.titleContent}>
+                  <h3>{s.title}</h3>
+                  {s.subtitle && <p className={styles.subtitle}>{s.subtitle}</p>}
+                </div>
+                {isMobile && <div className={styles.accordionIcon} />}
+              </motion.div>
+              {isMobile && (
+                <AnimatePresence>
+                  {activeMobileServiceId === s.id && (
+                    <motion.div
+                      className={styles.mobileServiceDetails}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.2, 1, 0.2, 1] }}
+                    >
+                      <div className={styles.mobileDetailsContent}>
+                        <ServiceDetailsContent service={s} />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
+            </div>
           ))}
         </motion.div>
-        <div className={styles.serviceDetails} style={{ minHeight: maxHeight || 'auto' }}>
-          <motion.div
-            className={styles.blob}
-            animate={{ 
-              x: selected === 0 ? -30 : 30, 
-              y: selected === 0 ? -10 : 10,
-              scale: selected === 0 ? 1 : 1.1,
-            }}
-            transition={{ type: 'spring', stiffness: 60, damping: 20 }}
-          />
-          <AnimatePresence mode="wait" initial={false}>
+
+        {!isMobile && (
+          <div className={styles.serviceDetails} style={{ minHeight: maxHeight || 'auto' }}>
             <motion.div
-              key={services[selected].id}
-              className={styles.panel}
-              variants={opacity}
-              initial="initial"
-              animate="enter"
-              exit="exit"
-            >
-              <p className={styles.lead}>{services[selected].description}</p>
-              {services[selected].points && (
-                <motion.ul className={styles.chips} variants={listStagger}>
-                  {services[selected].points.map((pt, idx) => (
-                    <motion.li key={idx} variants={itemFade}>
-                      {pt}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              )}
-              {services[selected].accessibilityTitle && (
-                <div className={styles.accessibility}>
-                  <h4>{services[selected].accessibilityTitle}</h4>
-                  {services[selected].compliance && (
-                    <motion.ul className={styles.chips} variants={listStagger}>
-                      {services[selected].compliance.map((c, idx) => (
-                        <motion.li key={idx} variants={itemFade}>
-                          {c}
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                  )}
-                  {services[selected].extra && <p className={styles.extra}>{services[selected].extra}</p>}
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+              className={styles.blob}
+              animate={{ 
+                x: selected === 0 ? -30 : 30, 
+                y: selected === 0 ? -10 : 10,
+                scale: selected === 0 ? 1 : 1.1,
+              }}
+              transition={{ type: 'spring', stiffness: 60, damping: 20 }}
+            />
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={services[selected].id}
+                className={styles.panel}
+                variants={opacity}
+                initial="initial"
+                animate="enter"
+                exit="exit"
+              >
+                <ServiceDetailsContent service={services[selected]} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        )}
       </div>
       
-      {/* Hidden measurer to compute tallest panel height */}
-      <div className={styles.measure} aria-hidden="true">
-        {services.map((svc, mi) => (
-          <div key={svc.id} ref={(el) => (measureRefs.current[mi] = el)} className={styles.panelContent}>
-            <p className={styles.lead}>{svc.description}</p>
-            {svc.points && (
-              <ul className={styles.chips}>
-                {svc.points.map((pt, idx) => <li key={idx}>{pt}</li>)}
-              </ul>
-            )}
-            {svc.accessibilityTitle && (
-              <div className={styles.accessibility}>
-                <h4>{svc.accessibilityTitle}</h4>
-                {svc.compliance && (
-                  <ul className={styles.chips}>
-                    {svc.compliance.map((c, idx) => <li key={idx}>{c}</li>)}
-                  </ul>
-                )}
-                {svc.extra && <p className={styles.extra}>{svc.extra}</p>}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      {!isMobile && (
+        <div className={styles.measure} aria-hidden="true">
+          {services.map((svc, mi) => (
+            <div key={svc.id} ref={(el) => (measureRefs.current[mi] = el)} className={styles.panelContent}>
+              <ServiceDetailsContent service={svc} />
+            </div>
+          ))}
+        </div>
+      )}
     </motion.section>
   );
 }

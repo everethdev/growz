@@ -139,3 +139,30 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .modalContainer .modalSlider {
+        padding: 20px;
+
+        .modal {
+            padding: 20px;
+
+            .header {
+                margin-bottom: 40px;
+
+                h2 {
+                    font-size: 32px;
+                }
+            }
+
+            .body {
+                flex-direction: column;
+                gap: 40px;
+
+                .service {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

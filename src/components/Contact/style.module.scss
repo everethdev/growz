@@ -137,3 +137,50 @@
     }
     
 }
+
+@media (max-width: 768px) {
+    .contact .body {
+        padding-top: 100px;
+
+        .title {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding-bottom: 50px;
+
+            h2 {
+                font-size: 10vw;
+            }
+
+            .buttonContainer {
+                left: 50%;
+                transform: translateX(-50%);
+                top: calc(100% - 50px);
+            }
+
+            .button {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        .nav {
+            margin-left: 20px;
+            margin-right: 20px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .info {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 100px;
+
+            div {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    }
+}

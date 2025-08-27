@@ -38,3 +38,15 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .menu .body {
+        padding: 50px;
+
+        .nav {
+            font-size: 40px;
+            gap: 8px;
+            margin-top: 60px;
+        }
+    }
+}

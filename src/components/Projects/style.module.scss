@@ -67,4 +67,21 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .projects .body {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 50px 20px;
+  }
+
+  .projects .body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
 
