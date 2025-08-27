@@ -8,7 +8,7 @@ const REVIEWS = [
         name: 'Alice',
         role: 'Data Scientist',
         avatar: 'https://hips.hearstapps.com/hmg-prod/images/openai-ceo-sam-altman-poses-during-the-artificial-news-photo-1755716119.pjpeg?crop=0.655xw:0.980xh;0.0459xw,0.0204xh&resize=640:*',
-        review: `Absolutely mind-blowing! From graphics to gameplay, it's a virtual masterpiece. I lost track of time in the immersive experience.`,
+        review: `Absolutely mind-blowing! From graphics to gameplay, its a virtual masterpiece. I lost track of time in the immersive experience.`,
     },
     {
         id: 0,
@@ -22,21 +22,21 @@ const REVIEWS = [
         name: 'Charlie',
         role: 'DevOps Engineer',
         avatar: 'https://i.pravatar.cc/150?img=8',
-        review: `Results speak louder than words. I've never seen progress like this. The workflows are challenging but oh-so-rewarding. Kudos!`,
+        review: `Results speak louder than words. Ive never seen progress like this. The workflows are challenging but oh-so-rewarding. Kudos!`,
     },
     {
         id: 3,
         name: 'Diana',
         role: 'Product Manager',
         avatar: 'https://i.pravatar.cc/150?img=41',
-        review: `It's very easy to customize and categorize lists for new projects/task categories.`,
+        review: `Its very easy to customize and categorize lists for new projects/task categories.`,
     },
     {
         id: 13,
         name: 'Ethan',
         role: 'Software Engineer',
         avatar: 'https://i.pravatar.cc/150?img=57',
-        review: `An adventure for the curious mind. Every click led to a new discovery. It's like a digital journey through the wonders of the internet.`,
+        review: `An adventure for the curious mind. Every click led to a new discovery. Its like a digital journey through the wonders of the internet.`,
     },
     {
         id: 4,
@@ -50,7 +50,7 @@ const REVIEWS = [
         name: 'George',
         role: 'Software Developer',
         avatar: 'https://i.pravatar.cc/150?img=21',
-        review: `A game-changer for organization. Tasks, calendars, notes – everything neatly synced. My life has never been this streamlined. Pure genius!`,
+        review: `A game-changer for organization. Tasks, calendars, notes everything neatly synced. My life has never been this streamlined. Pure genius!`,
     },
     {
         id: 11,
@@ -64,7 +64,7 @@ const REVIEWS = [
         name: 'Ian',
         role: 'CTO',
         avatar: 'https://public.bnbstatic.com/image/cms/blog/20190606/8ed87a09-59f3-4000-952f-1e7e2677b550.jpg',
-        review: `Discovering new beats is addictive with this service. The curated playlists are spot-on, and the personalized recommendations are eerily accurate. A music lover's paradise!`,
+        review: `Discovering new beats is addictive with this service. The curated playlists are spot-on, and the personalized recommendations are eerily accurate. A music lovers paradise!`,
     },
 ];
 
