@@ -110,7 +110,6 @@
         display: grid;
         grid-template-areas: "stack";
         overflow: visible; // Allow shadow to be seen
-        min-height: 350px; 
     }
 
     .card {
@@ -191,23 +190,49 @@
     }
 }
 
-@media (max-width: 768px) {
-    .slidingImages .main {
-        padding: 2rem 1rem;
+@media (max-width: 480px) {
+    .slidingImages {
+        padding: 60px 0.5rem 100px;
     }
 
     .slidingImages .h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .slidingImages .p {
+        margin-bottom: 1.5rem;
     }
 
     .slidingImages .sliderContainer {
-        grid-template-columns: 40px auto 40px;
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "slider"
+            "nav-left"
+            "nav-right";
+        justify-items: center;
+        gap: 0.5rem;
     }
 
     .slidingImages .navButton {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.2rem;
+        &:first-of-type {
+            justify-self: center;
+        }
+        &:last-of-type {
+            justify-self: center;
+        }
+    }
+
+    .slidingImages .card .blockquote {
+        padding: 1rem;
+        font-size: clamp(0.875rem, 4vw, 1rem);
+    }
+
+    .slidingImages .card .avatar {
+        width: 3.5rem;
+        height: 3.5rem;
     }
 }
