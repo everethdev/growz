@@ -42,7 +42,7 @@ const REVIEWS = [
         id: 4,
         name: 'Fiona',
         role: 'Marketing Specialist',
-        avatar: 'https://i.pravatar.cc/150?img=42',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f4/USAFA_Hosts_Elon_Musk_%28Image_1_of_17%29_%28cropped%29.jpg',
         review: `Plan, create, and explore seamlessly. This service made my creative dreams a reality. Smooth navigation, and the recommendations were spot on.`,
     },
     {
@@ -63,7 +63,7 @@ const REVIEWS = [
         id: 5,
         name: 'Ian',
         role: 'CTO',
-        avatar: 'https://i.pravatar.cc/150?img=33',
+        avatar: 'https://public.bnbstatic.com/image/cms/blog/20190606/8ed87a09-59f3-4000-952f-1e7e2677b550.jpg',
         review: `Discovering new beats is addictive with this service. The curated playlists are spot-on, and the personalized recommendations are eerily accurate. A music lover's paradise!`,
     },
 ];
