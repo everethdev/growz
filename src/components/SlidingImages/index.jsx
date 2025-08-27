@@ -50,7 +50,7 @@ const REVIEWS = [
         name: 'George',
         role: 'Software Developer',
         avatar: 'https://i.pravatar.cc/150?img=21',
-        review: `A game-changer for organization. Tasks, calendars, notes everything neatly synced. My life has never been this streamlined. Pure genius!`,
+        review: `A game changer for organization. Tasks, calendars, notes everything neatly synced. My life has never been this streamlined. Pure genius!`,
     },
     {
         id: 11,
@@ -64,7 +64,7 @@ const REVIEWS = [
         name: 'Ian',
         role: 'CTO',
         avatar: 'https://public.bnbstatic.com/image/cms/blog/20190606/8ed87a09-59f3-4000-952f-1e7e2677b550.jpg',
-        review: `Discovering new beats is addictive with this service. The curated playlists are spot-on, and the personalized recommendations are eerily accurate. A music lovers paradise!`,
+        review: `Discovering new beats is addictive with this service. The curated playlists are spot on, and the personalized recommendations are eerily accurate. A music lovers paradise!`,
     },
 ];
 
@@ -104,7 +104,7 @@ export default function Index() {
         <div className={styles.slidingImages}>
             <main className={styles.main}>
                 <h1 className={styles.h1}>A word from our customers</h1>
-                <p className={styles.p}>We've been helping businesses do their best since inception.</p>
+                <p className={styles.p}>We have been helping businesses do their best since inception.</p>
 
                 <div 
                     className={styles.sliderContainer}
