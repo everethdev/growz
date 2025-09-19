@@ -1,86 +1,171 @@
 .projects {
   background-color: #ffffff;
-  padding: 100px 50px;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(closest-side, rgba(28,29,32,0.12), rgba(28,29,32,0.05), transparent);
+    filter: blur(60px);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .titleContainer {
+    text-align: center;
+    margin-bottom: 100px;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #EAEAEA;
+    color: #333;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+  }
+
+  .sectionTitle {
+    font-size: 52px;
+    font-weight: 500;
+    color: #1C1D20;
+    line-height: 1.15;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: #444;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .body {
     width: 100%;
-    max-width: 1400px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 100px;
-  }
-
-  .modalContainer {
-    height: 350px;
-    width: 400px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: rgb(0, 0, 0);
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 3;
-  }
-
-  .modalSlider {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    transition: top 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-  }
-
-  .modal {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal img {
-    height: auto;
-  }
-
-  .cursor,
-  .cursorLabel {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: #f6ff00;
-    color: rgb(0, 0, 0);
-    position: fixed;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 300;
-    pointer-events: none;
-  }
-
-  .cursorLabel {
-    background-color: transparent;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    align-items: start;
   }
 }
 
 @media (max-width: 1200px) {
-  .projects .body {
-    grid-template-columns: repeat(2, 1fr);
+  .projects {
+    .container {
+      padding: 100px 40px;
+    }
+
+    .body {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .sectionTitle {
+      font-size: 46px;
+    }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .projects {
-    padding: 50px 20px;
-  }
+    .container {
+      padding: 80px 30px;
+    }
 
-  .projects .body {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    .titleContainer {
+      margin-bottom: 80px;
+    }
+
+    .sectionTitle {
+      font-size: 40px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+    }
+
+    .body {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .projects {
+    .container {
+      padding: 60px 20px;
+    }
+
+    .titleContainer {
+      margin-bottom: 60px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 6px 16px;
+    }
+
+    .sectionTitle {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 16px;
+    }
+
+    .body {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .projects {
+    .container {
+      padding: 50px 16px;
+    }
+
+    .sectionTitle {
+      font-size: 28px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+    }
   }
 }
 

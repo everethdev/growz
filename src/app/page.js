@@ -10,6 +10,7 @@ import OurServices from '../components/OurServices';
 import SlidingImages from '../components/SlidingImages';
 import Contact from '../components/Contact';
 import ServicesModal from '../components/ServicesModal';
+import Footer from '../components/Footer';
 
 export default function Home() {
 
@@ -78,17 +79,19 @@ export default function Home() {
       <div id="home" data-scroll-section>
         <Landing />
       </div>
-      <Description data-scroll-section/>
+
+            <div id="services" data-scroll-section>
+        <OurServices />
+      </div>
+
       <div id="work" data-scroll-section>
         <Projects />
       </div>
-      <div id="services" data-scroll-section>
-        <OurServices />
-      </div>
-      <SlidingImages data-scroll-section/>
+
       <div id="contact" data-scroll-section>
-        <Contact />
+        <Footer />
       </div>
+
     </main>
   )
 }

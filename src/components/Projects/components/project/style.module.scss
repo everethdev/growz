@@ -1,56 +1,200 @@
 .project {
-  background-color: #f0f0f0;
+  background: #ffffff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  height: 300px; 
+  height: 380px;
   overflow: hidden;
-  transition: all 0.2s;
   width: 100%;
+  position: relative;
+  cursor: pointer;
+  box-shadow:
+    0 4px 25px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-color: #d6d6d6;
+  }
 
   .logoContainer {
+    position: relative;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;
     display: flex;
     flex: 1;
     justify-content: center;
-    padding: 20px;
+    padding: 40px 30px;
+    overflow: hidden;
+
+    .logoWrapper {
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(closest-side, rgba(28,29,32,0.12), rgba(28,29,32,0.05), transparent);
+      filter: blur(60px);
+      opacity: 0.4;
+      z-index: 1;
+    }
   }
 
   .textContainer {
-    padding: 20px;
-    background-color: #f0f0f0;
+    padding: 28px 24px;
+    background: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .categoryBadge {
+    span {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #EAEAEA;
+      color: #333;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+    }
   }
 
   .title {
-    font-size: 25px;
+    font-size: 22px;
     line-height: 1.3;
-    color: black;
-    margin: 0 0 10px 0;
-  }
-
-  .metadata {
-    font-size: 16px;
-    color: #666;
+    color: #1C1D20;
     margin: 0;
-    font-weight: 300;
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  .metadataContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .metadataTag {
+    padding: 4px 10px;
+    background-color: #EAEAEA;
+    color: #333;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #EAEAEA;
+    transition: all 0.3s ease;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .project {
+    height: 350px;
+
+    .logoContainer {
+      padding: 35px 25px;
+    }
+
+    .textContainer {
+      padding: 24px 20px;
+      gap: 10px;
+    }
+
+    .title {
+      font-size: 20px;
+    }
+
+    .metadataTag {
+      font-size: 11px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .project {
+    height: 320px;
+
+    .logoContainer {
+      padding: 30px 20px;
+    }
+
+    .textContainer {
+      padding: 20px 18px;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+
+    .categoryBadge span {
+      font-size: 11px;
+      padding: 5px 10px;
+    }
+
+    .arrow {
+      width: 28px;
+      height: 28px;
+      top: 20px;
+      right: 18px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
   .project {
     height: auto;
-  }
+    min-height: 300px;
 
-  .project .title {
-    font-size: 20px;
+    .logoContainer {
+      padding: 25px 16px;
+    }
+
+    .textContainer {
+      padding: 18px 16px;
+    }
+
+    .title {
+      font-size: 16px;
+    }
+
+    .metadataTag {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
   }
 }

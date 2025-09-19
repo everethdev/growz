@@ -153,6 +153,29 @@
                 h2 {
                     font-size: 32px;
                 }
+
+                .closeButton {
+                    padding: 15px 25px;
+                    min-height: 44px;
+                    min-width: 44px;
+                    border: 2px solid rgba(255, 255, 255, 0.5);
+                    background-color: rgba(255, 255, 255, 0.1);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    touch-action: manipulation;
+
+                    &:hover, &:active {
+                        background-color: rgba(255, 255, 255, 0.2);
+                        border-color: rgba(255, 255, 255, 0.8);
+                    }
+
+                    p {
+                        font-size: 18px;
+                        font-weight: 600;
+                        margin: 0;
+                    }
+                }
             }
 
             .body {
