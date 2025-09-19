@@ -19,8 +19,8 @@ const Footer = () => {
                         <div className={styles.leftContent}>
                             <h2 className={styles.headline}>Ready to Transform Your Business?</h2>
                             <p className={styles.description}>
-                                Let's discuss how our strategic consulting can help drive your business forward.
-                                We're here to turn challenges into opportunities.
+                                Let&apos;s discuss how our strategic consulting can help drive your business forward.
+                                We&apos;re here to turn challenges into opportunities.
                             </p>
                         </div>
                         <div className={styles.rightContent}>
