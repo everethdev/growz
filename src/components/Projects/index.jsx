@@ -52,6 +52,7 @@ export default function Home() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isManualNavigation, setIsManualNavigation] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -65,7 +66,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!isMobile) {
+    if (!isMobile && !isManualNavigation) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) =>
           prevIndex === projects.length - 1 ? 0 : prevIndex + 1
@@ -74,22 +75,35 @@ export default function Home() {
 
       return () => clearInterval(interval);
     }
-  }, [isMobile]);
+  }, [isMobile, isManualNavigation]);
+
+  useEffect(() => {
+    if (isManualNavigation) {
+      const timeout = setTimeout(() => {
+        setIsManualNavigation(false);
+      }, 6000); // 6 second buffer after manual navigation
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isManualNavigation, currentIndex]);
 
   const nextProject = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === projects.length - 1 ? 0 : prevIndex + 1
     );
+    setIsManualNavigation(true);
   };
 
   const prevProject = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? projects.length - 1 : prevIndex - 1
     );
+    setIsManualNavigation(true);
   };
 
   const goToProject = (index) => {
     setCurrentIndex(index);
+    setIsManualNavigation(true);
   };
 
   const titleVariants = {
