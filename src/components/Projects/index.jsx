@@ -53,6 +53,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isManualNavigation, setIsManualNavigation] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -66,16 +67,16 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!isMobile && !isManualNavigation) {
+    if (!isMobile && !isManualNavigation && !isHovered) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) =>
-          prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+          prevIndex === projects.length - 3 ? 0 : prevIndex + 1
         );
       }, 4000);
 
       return () => clearInterval(interval);
     }
-  }, [isMobile, isManualNavigation]);
+  }, [isMobile, isManualNavigation, isHovered, projects.length]);
 
   useEffect(() => {
     if (isManualNavigation) {
@@ -88,21 +89,23 @@ export default function Home() {
   }, [isManualNavigation, currentIndex]);
 
   const nextProject = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === projects.length - 1 ? 0 : prevIndex + 1
-    );
+    if (currentIndex < projects.length - 3) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }
     setIsManualNavigation(true);
   };
 
   const prevProject = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
-    );
+    if (currentIndex > 0) {
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+    }
     setIsManualNavigation(true);
   };
 
   const goToProject = (index) => {
-    setCurrentIndex(index);
+    if (index >= 0 && index <= projects.length - 3) {
+      setCurrentIndex(index);
+    }
     setIsManualNavigation(true);
   };
 
@@ -200,6 +203,7 @@ export default function Home() {
                     index={index}
                     title={project.title}
                     logo={project.logo}
+                    src={project.src}
                     metadata={project.metadata}
                   />
                 </motion.div>
@@ -207,37 +211,39 @@ export default function Home() {
             })}
           </motion.div>
         ) : (
-          <div className={styles.carouselContainer}>
+          <div 
+            className={styles.carouselContainer}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <motion.div
               ref={projectsRef}
               className={styles.carouselWrapper}
               initial="hidden"
               animate={projectsInView ? "visible" : "hidden"}
+              style={{maxWidth: '1200px'}}
             >
-              <div className={styles.carousel}>
-                {projects.map((project, index) => (
-                  <motion.div
-                    key={index}
-                    className={styles.carouselItem}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{
-                      opacity: index === currentIndex ? 1 : 0,
-                      scale: index === currentIndex ? 1 : 0.95,
-                      zIndex: index === currentIndex ? 1 : 0
-                    }}
-                    transition={{
-                      duration: 0.6,
-                      ease: [0.6, -0.05, 0.01, 0.99]
-                    }}
-                  >
-                    <Project
-                      index={index}
-                      title={project.title}
-                      logo={project.logo}
-                      metadata={project.metadata}
-                    />
-                  </motion.div>
-                ))}
+              <div style={{overflow: 'hidden', paddingTop: '10px'}}>
+                <motion.div
+                  style={{display: 'flex', gap: '20px'}}
+                  animate={{ x: -currentIndex * (1160 / 3 + 20) }}
+                  transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+                >
+                  {projects.map((project, index) => (
+                    <div
+                      key={index}
+                      style={{width: 'calc((1200px - 40px) / 3)', flexShrink: 0}}
+                    >
+                      <Project
+                        index={index}
+                        title={project.title}
+                        logo={project.logo}
+                        src={project.src}
+                        metadata={project.metadata}
+                      />
+                    </div>
+                  ))}
+                </motion.div>
               </div>
 
               <div className={styles.carouselControls}>
@@ -250,14 +256,19 @@ export default function Home() {
                 </button>
 
                 <div className={styles.carouselIndicators}>
-                  {projects.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`${styles.indicator} ${index === currentIndex ? styles.active : ''}`}
-                      onClick={() => goToProject(index)}
-                      aria-label={`Go to project ${index + 1}`}
-                    />
-                  ))}
+                  {projects.map((_, index) => {
+                    if (index <= projects.length - 3) {
+                      return (
+                        <button
+                          key={index}
+                          className={`${styles.indicator} ${index === currentIndex ? styles.active : ''}`}
+                          onClick={() => goToProject(index)}
+                          aria-label={`Go to project ${index + 1}`}
+                        />
+                      )
+                    }
+                    return null;
+                  })}
                 </div>
 
                 <button
