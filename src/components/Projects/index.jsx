@@ -190,11 +190,10 @@ export default function Home() {
 
         {isMobile ? (
           <motion.div
-            ref={projectsRef}
             className={styles.body}
             variants={containerVariants}
             initial="hidden"
-            animate={projectsInView ? "visible" : "hidden"}
+            animate={isInView ? "visible" : "hidden"}
           >
             {projects.map((project, index) => {
               return (
