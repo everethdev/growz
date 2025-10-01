@@ -17,7 +17,22 @@
   width: 100%;
   padding-bottom: 2rem;
   
-  .logo { font-weight: 700; font-size: 1.5rem; color: #1c1c1c; }
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #1c1c1c;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1;
+
+    img {
+      height: 1.7rem;
+      width: auto;
+      display: block;
+      margin-top: 0.1rem;
+    }
+  }
   .navLinks {
     display: flex;
     gap: 2rem;

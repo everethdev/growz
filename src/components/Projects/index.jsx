@@ -88,6 +88,12 @@ export default function Home() {
     }
   }, [isManualNavigation, currentIndex]);
 
+  useEffect(() => {
+    if (projectsInView) {
+      setCurrentIndex(0);
+    }
+  }, [projectsInView]);
+
   const nextProject = () => {
     if (currentIndex < projects.length - 3) {
       setCurrentIndex((prevIndex) => prevIndex + 1);

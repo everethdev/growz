@@ -1,8 +1,0 @@
-- Title: Web3 Services Suite - Unlock the power of blockchain with solutions designed for you business
-- subtitle: write something yourself
-
-On selector:
-
-- Tokenization & Smart Contracts - Fractionalize ownership, streamline agreements, and raise capital through secure, transparent digital assets
-- Crypto Payments - Accept and manage crypto transactions with seamless wallet integrations and stablecoin settlement options
-- Blockchain Infrastructure & dApp Development - Build scalable decentralized applications and robust blockchain systems tailored to your business needs

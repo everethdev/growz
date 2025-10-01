@@ -185,7 +185,10 @@ export default function Home() {
   return (
     <motion.div variants={slideUp} initial="initial" animate="enter" className={styles.page}>
       <header className={styles.header}>
-        <div className={styles.logo}>Paradigm Global</div>
+        <div className={styles.logo}>
+          <img src="/logo.png" alt="Paradigm Global Logo" />
+          Paradigm Global
+        </div>
 
       </header>
       <main className={styles.mainContent}>

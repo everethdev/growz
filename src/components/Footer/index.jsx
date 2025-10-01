@@ -40,7 +40,7 @@ const Footer = () => {
                             <div className={styles.logo}>Paradigm Global</div>
                             <p className={styles.tagline}>Business Centre, SPC Free Zone, Sheikh Mohammed Bin Zayed Rd, Al Zahia
 Sharjah, United Arab Emirates</p>
-                            <p className={styles.contact}>hello@paradigmglobal.com </p>
+                            <p className={styles.contact}>hello@weareparadigm.org </p>
                             <p className={styles.contact}>+40 751 943 797</p>
                         </div>
 
